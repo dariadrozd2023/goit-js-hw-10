@@ -3,6 +3,11 @@ import flatpickr from 'flatpickr';
 // Додатковий імпорт стилів
 import 'flatpickr/dist/flatpickr.min.css';
 
+// Описаний у документації
+import iziToast from 'izitoast';
+// Додатковий імпорт стилів
+import 'izitoast/dist/css/iziToast.min.css';
+
 let userSelectedDate = null; // Оголошуємо змінну для збереження обраної дати
 let timerInterval = null; // Зберігає ідентифікатор інтервалу для таймера
 
@@ -27,7 +32,9 @@ flatpickr(refs.input, {
     const now = new Date(); // Поточна дата
     if (userSelectedDate < now) {
       // Перевіряємо, чи обрана дата в минулому
-      window.alert('Please choose a date in the future'); // Показуємо повідомлення
+      iziToast.show({
+        message: 'Please choose a date in the future',
+      }); // Показуємо повідомлення
       refs.startBtn.disabled = true; // Робимо кнопку неактивною
     } else {
       refs.startBtn.disabled = false; // Якщо дата в майбутньому, кнопка активна
